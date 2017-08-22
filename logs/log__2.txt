@@ -1,0 +1,6 @@
+2017-02-12T21:00:02+03:00 INFO (6): AMOCRM API: getting account info
+2017-02-12T21:00:03+03:00 INFO (6): request: a:3:{s:7:"amohash";s:32:"98b675a6f332a87bd68b038f267e50c7";s:7:"amouser";s:19:"voloshko@e-vrika.ru";s:9:"subdomain";s:10:"evrikagrup";}
+2017-02-12T21:00:03+03:00 INFO (6): (apiAction)
+2017-02-12T21:00:03+03:00 INFO (6): is post
+2017-02-12T21:00:03+03:00 INFO (6): AMOCRM API: getting account info
+2017-02-12T21:00:04+03:00 INFO (6): AMOCRM API: getting lead data by id#10561400

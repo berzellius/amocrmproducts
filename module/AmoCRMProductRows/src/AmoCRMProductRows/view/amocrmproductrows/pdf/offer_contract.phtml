@@ -1,0 +1,553 @@
+<?php /*body>
+    <h1>Offer template</h1>
+    <h2>На русском языке</h2>
+    <p>from 'somevar':<?php echo $this->somevar; ?></p>
+    <p>url: <?php echo $this->img_path; ?></p>
+    <img src="<?php echo $this->img_path; ?>" />
+    <?php if(isset($this->products) && is_array($this->products)): ?>
+        <p>Список товаров для сущности #<?php echo $this->entityId; ?></p>
+        <?php foreach ($this->products as $product): ?>
+            <p><?php echo json_encode($product); ?> / <?php echo $product->name ?></p>
+        <?php endforeach; ?>
+    <?php else: ?>
+    <p>Нет товаров для сущности #<?php echo $this->entityId; ?></p>
+    <?php endif; ?>
+</body>*/?>
+<html>
+<head>
+    <style>
+        #main_wrapper{
+            left: 2cm;
+            right: 0.5cm;
+        }
+        #upper  img:first-child{
+            width: 10.8cm;
+        }
+        #upper table tr td:nth-child(2){
+            padding-left: 0.5cm;
+        }
+        h1{
+            font-size: 11pt;
+        }
+        #title_descr{
+            margin-top: .5cm;
+        }
+        #title_descr p{
+            font-size: 9pt;
+            line-height: 5pt;
+        }
+        #brief{
+            margin-top: 1cm;
+        }
+        #brief table tr td{
+            font-size: 12pt;
+            padding-left: 5px;
+        }
+        #brief table:first-child tr td.key{
+            width: 3.5cm;
+        }
+        #brief table:last-child{
+            border-spacing: 5px 0;
+            margin-left: -5px;
+
+        }
+        #brief table:last-child tr:nth-child(odd){
+            background-color: lightgray;
+        }
+        #brief table:last-child tr td.key{
+            width: 5.5cm;
+        }
+        #brief table:last-child tr td:nth-child(odd){
+            font-weight: bold;
+            border-right: solid 1px #000;
+        }
+        #brief table:last-child tr td:nth-child(even){
+            border-left: solid 1px #000;
+        }
+        #products{
+            margin-top: 1cm;
+        }
+        #products table{
+            width: 19cm;
+        }
+        #products table thead{
+            background-color: lightyellow;
+        }
+        #products table tbody tr td:nth-child(1){
+            background-color:lightyellow;
+        }
+        #products table tbody tr td:nth-child(2){
+            width: 13.5cm;
+        }
+        #products table td{
+            border: 1px solid #000;
+            border-spacing: 0;
+            text-align: center;
+        }
+        #products table tbody tr:last-child td{
+            background-color: lightgray;
+        }
+        #products table tbody tr:last-child td:first-child{
+            text-align: right;
+        }
+        #products table tbody tr:last-child td:nth-child(2){
+            width: auto;
+        }
+
+        #comments{
+            margin-top: 1cm;
+        }
+        #comments p{
+            text-align: justify;
+            line-height: 1em;
+        }
+        #comments p.special{
+            margin: 0 10pt;
+        }
+        #comments p.special{
+            page-break-after: avoid;
+        }
+
+        #equipment{
+            margin-top: 1cm;
+        }
+        #equipment table{
+
+        }
+        #equipment table td:first-child{
+            width: 12cm;
+        }
+        #equipment table td:first-child p{
+            margin: 0;
+        }
+
+        #job_list{
+            margin-top: 1cm;
+            font-size: 11pt;
+        }
+        #job_list p{
+            margin: 0;
+            text-align: center;
+        }
+        #job_list table tr th:first-child{
+            text-align: left;
+        }
+        #job_list table tr:first-child th:first-child{
+            text-align: center;
+        }
+        #whatelse{
+            margin-top: 1cm;
+            page-break-inside: avoid;
+        }
+        #whatelse p{
+            margin: 0;
+        }
+        #whatelse table{
+            margin: 0;
+            margin-bottom: 2em;
+        }
+        #whatelse table td{
+            padding-left: 10pt;
+            font-size: 10pt;
+            font-style: italic;
+        }
+
+        #examples{
+            margin-top: 1cm;
+            page-break-inside: avoid;
+        }
+        #examples p:first-child{
+            font-size: 17pt;
+            font-weight: bold;
+            text-align: center;
+        }
+        #examples table{
+            margin: -32pt -30pt;
+        }
+        #examples table td p{
+            margin: 8pt 0;
+            line-height: .8em;
+        }
+        #examples table td p.headline{
+            font-size: 12pt;
+        }
+        #examples table td p.description{
+            font-size: 9pt;
+        }
+
+        #company_info{
+            margin-top: 1cm;
+            page-break-inside: avoid;
+        }
+        #company_info p{
+            margin: 0;
+            line-height: 0.9em;
+        }
+        #company_info p:nth-child(5){
+            margin-top: 10pt;
+        }
+        #company_info p:nth-child(7){
+            /*text-align: center;*/
+        }
+        #company_info p span.small{
+            font-size: 9pt;
+        }
+    </style>
+</head>
+<body>
+<div id="main_wrapper">
+    <div id="upper">
+        <table border="0">
+            <tr>
+                <td><img src="<?php echo $this->static_path ?>/img/kp/image001.gif" /></td>
+                <td>
+                    <h1>КОММЕРЧЕСКОЕ ПРЕДЛОЖЕНИЕ</h1>
+                    <div id="title_descr">
+                        <p>От юр. лица</p>
+                        <p><?= $this->lead->seller['name'] ?></p>
+                        <p>125040, Москва, ул. Расковой, 10c4</p>
+                        <p>Телефон: 8 (499) 653-71-75</p>
+                        <p>Почта: zakaz@e-vrika.ru</p>
+                        <p>
+                            ИНН:
+                            <?php switch($this->lead->seller['id']){
+                                case '4473656':
+                                    echo '7714339627';
+                                    break;
+                                case '4473658':
+                                    echo '7714920398';
+                                    break;
+                                case '4473660':
+                                    echo '402714285405';
+                                    break;
+                                case '4473662':
+                                    echo '771527088461';
+                                    break;
+                            } ?>
+                        </p>
+                        <p><b>Ответственный менеджер:</b></p>
+                        <!--p>Ларионов Владислав</p>
+                        <p>+79163651771</p-->
+                        <?php if($this->lead->responsible_user != null): ?>
+                            <p><?= $this->lead->responsible_user->name ?></p>
+                            <p>
+                                <?php
+                                    $contacts = array();
+                                    if($this->lead->responsible_user->phone_number != '')
+                                        $contacts[] = $this->lead->responsible_user->phone_number;
+                                        $contacts[] = $this->lead->responsible_user->login;
+
+                                    echo implode(', ', $contacts);
+                                ?>
+                            </p>
+                        <?php endif; ?>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div id="brief">
+        <table border="0">
+            <tr>
+                <td class="key">Для компании:</td>
+                <td class="value">
+                    <?php if($this->lead->company != null): ?>
+                        <?= $this->lead->company->name ?>
+                    <?php endif; ?>
+                </td>
+            </tr>
+            <tr>
+                <td class="key">Контактное лицо:</td>
+                <td class="value">
+                    <?php if($this->lead->contact != null): ?>
+                        <?= $this->lead->contact->name ?>
+                    <?php endif; ?>
+                </td>
+            </tr>
+            <tr>
+                <td class="key">Объект:</td>
+                <td class="value"><?php echo $this->lead->name ?></td>
+            </tr>
+            <tr>
+                <td class="key">Площадь, м<sup>2</sup>:</td>
+                <td class="value">
+                    <?php if($this->lead->area != null): ?>
+                    <?= number_format($this->lead->area, 0, '.', ' ') ?>
+                    <?php endif; ?>
+                </td>
+            </tr>
+        </table>
+        <table border="0">
+            <tr>
+                <td class="key">Дата коммерческого предложения:</td>
+                <td class="value"><?= date('d.m.Y') ?></td>
+            </tr>
+            <tr>
+                <td class="key">Условия оплаты:</td>
+                <td class="value"><?= $this->lead->payment_way ?></td>
+            </tr>
+            <tr>
+                <td class="key">Итого:</td>
+                <td class="value">
+                    <?php if($this->sum != null): ?>
+                        <?= number_format($this->sum, 0, '.', ' ') ?> руб.
+                        <?php if($this->sum_text != null): ?>
+                             (<?= $this->sum_text ?>)
+                        <?php endif; ?>
+                    <?php endif; ?>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div id="products">
+        <table>
+            <thead>
+            <tr>
+                <td rowspan="2"><b>№</b></td>
+                <td colspan="2" align="center"><b>Предложение</b></td>
+            </tr>
+            <tr>
+                <td><b>Услуга, график</b></td>
+                <td><b>Цена, руб.</b></td>
+            </tr>
+            </thead>
+            <tbody>
+            <!-- START: вариативная часть -->
+            <?php
+                $i = 0;
+                foreach ($this->products as $product):
+                    $i++;
+                    ?>
+                <tr>
+                    <td><?= $i ?></td>
+                    <td><?= $product->name ?></td>
+                    <td><?= number_format($product->price * $product->quantity, 0, '.', ' ') ?></td>
+                </tr>
+            <?php endforeach; ?>
+            <!-- END: вариативная часть -->
+            <tr>
+                <td colspan="2"><b><i>Итого:</i></b></td>
+                <td><?= number_format($this->sum, 0, '.', ' '); ?></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div id="comments">
+        <?php if($this->lead->kp_comment != null): ?>
+        <p>
+            <b>Комментарии:</b>
+            <?= $this->lead->kp_comment ?>
+        </p>
+        <?php endif; ?>
+
+        <p class="special">
+            <b>Условия:</b>
+        </p>
+        <p class="special">
+            *
+            <?php
+                switch ($this->lead->seller['id']){
+                    case '4473656':
+                        echo 'Стоимость услуг указана с НДС';
+                        break;
+                    default:
+                        echo    'Цена не облагается НДС в связи с применением упрощенной системы налогооблажения 
+                                в соответствии с гл. 26.2 НК РФ';
+                        break;
+                }
+            ?>
+        </p>
+        <p class="special">
+            * В стоимость услуг включены: фонд оплаты труда сотрудников, фирменная форма, инвентарь, моющие средства, транспортные и накладные расходы, амортизация оборудования, налоги, прибыль компании.
+        </p>
+    </div>
+
+    <div id="equipment">
+        <table border="0">
+            <tr>
+                <td>
+                    <p><b>Что мы используем в работе:</b></p>
+                    <p>
+                        Профессиональные химические клининговые средства Cid Lines, Магос. Профессиональная техника Karcher. Профессиональные ведра, швабры, микрофибры и другой необходимый уборочный инвентарь.
+                    </p>
+                    <p>
+                        Наша компания несет полную ответственность за сохранность имущества клиента, соблюдение техники безопасности, а также за жизнь и здоровье своих сотрудников
+                    </p>
+                    <p>
+                        Труд работников, оказывающих услуги по контрактному обслуживанию производится в соответствии с российским Трудовым законодательством.
+                    </p>
+                </td>
+                <td>
+                    <img src="<?php echo $this->static_path ?>/img/kp/image002.jpg" />
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div id="job_list">
+        <p><b>Перечень работ по уборке</b></p>
+        <p>(приведен базовый перечень работ; подробные услуги оговариваются и закрепляются в договоре с Клиентом)</p>
+
+        <table border="1">
+            <tr><th>№</th><th>Виды работ</th><th>Периодичность</th></tr>
+            <tr><th>1.</th><th>Комплексная уборка помещений</th><td> </td></tr>
+            <tr><th>1.1.</th><th>Офисные/общие помещения:</th><td> </td></tr>
+            <tr><td>1.1.1.</td><td>Сбор и вынос мусора, замена п/э пакетов;</td><td>ежедневно</td></tr>
+            <tr><td>1.1.2</td><td>Влажная протирка урн;</td><td>По мере загрязнения</td></tr>
+            <tr><td>1.1.3.</td><td>Удаление локальных загрязнений с перегородок, дверей и деталей интерьера;</td><td>ежедневно</td></tr>
+            <tr><td>1.1.4.</td><td>Влажная протирка пластиковых и металлизированных жалюзи с применением специальных средств;</td><td>По мере загрязнения</td></tr>
+            <tr><td>1.1.5.</td><td>Влажная протирка внутреннего остекления, стеклянных дверей шкафов, включая подоконники с применением специальных средств;</td><td>По мере загрязнения, но не реже 1-го раза в неделю</td></tr>
+            <tr><td>1.1.6.</td><td>Протирка оргтехники (телефонов, клавиатуры, ксероксов, факсов) с применением специальных средств;</td><td>ежедневно</td></tr>
+            <tr><td>1.1.7.</td><td>Влажная протирка рабочего места «без перемещения документов» канцелярских аксессуаров с применением специальных средств;</td><td>ежедневно</td></tr>
+            <tr><td>1.1.8.</td><td>Влажная протирка мебели (столов, стульев, стеллажей, шкафов, включая ножки столов, стульев и крестовин кресел) в кабинете руководителя, зоне ресепшн и переговорных комнатах</td><td>ежедневно</td></tr>
+            <tr><td>1.1.9.</td><td>Влажная протирка компьютеров, ноутбуков, мониторов</td><td>ежедневно</td></tr>
+            <tr><td>1.1.10</td><td>Влажная протирка или сухое обметание различных деталей интерьера с применением специальных средств;</td><td>ежедневно</td></tr>
+            <tr><td>1.1.11</td><td>Влажная протирка радиаторов отопления, выключателей с применением специальных средств;</td><td>ежедневно</td></tr>
+            <tr><td>1.1.12</td><td>Чистка пылесосом ковровых покрытий и влажная протирка пола с применением специальных химических средств;</td><td>ежедневно</td></tr>
+            <tr><td>1.1.13</td><td>Уборка переговорных комнат;</td><td>ежедневно</td></tr>
+            <tr><td>1.1.14</td><td>Влажная протирка и, при необходимости, полив растений.</td><td>еженедельно</td></tr>
+            <tr><td>1.1.15</td><td>Сухая машинная очистка ковровых покрытий</td><td>ежедневно</td></tr>
+            <tr><td>1.1.16</td><td>Влажная уборка пола</td><td>ежедневно</td></tr>
+            <tr><td>1.1.17</td><td>Очистка осветительных приборов</td><td>ежедневно</td></tr>
+            <tr><td>1.1.18</td><td>Вынос мусора из бумаго-уничтожительных машин и корзин (по мере необходимости)</td><td>По мере загрязнения</td></tr>
+            <tr><th>1.2.</th><th>Входные группы, проходные зоны (коридоры)</th><td> </td></tr>
+            <tr><td>1.2.1.</td><td>Удаление локальных загрязнений с поверхностей дверей и дверных коробов с применением специальных средств;</td><td>ежедневно</td></tr>
+            <tr><td>1.2.2.</td><td>Протирка стен, решеток тепловой завесы, плинтусов с применением специальных средств;</td><td>По мере загрязнения</td></tr>
+            <tr><td>1.2.3.</td><td>Удаление локальных загрязнений со всех стеклянных и зеркальных поверхностей с применением специальных средств;</td><td>ежедневно</td></tr>
+            <tr><td>1.2.4.</td><td>Удаление локальных загрязнений и натирка металлических поверхностей с применением специальных средств;</td><td>ежедневно</td></tr>
+            <tr><td>1.2.5.</td><td>Удаление локальных загрязнений с крупных и мелких деталей интерьера (картины, скульптуры и т.п.), натирка табличек с применением специальных средств;</td><td>ежедневно</td></tr>
+            <tr><td>1.2.6.</td><td>Подметание и влажная протирка грязезащитных ковриков с применением специальных средств;</td><td>ежедневно</td></tr>
+            <tr><td>1.2.7.</td><td>Мойка поверхности твердого пола проходных зон с применением специальных средств;</td><td>ежедневно</td></tr>
+            <tr><th>1.3.</th><th>Санитарные и технические помещения:</th><td> </td></tr>
+            <tr><td>1.3.1.</td><td>Сбор и вынос мусора, замена п/э пакетов и влажная протирка урн;</td><td>ежедневно</td></tr>
+            <tr><td>1.3.3.</td><td>Удаление локальных загрязнений с дверей, дверных коробов, плинтусов с применением специальных средств;</td><td>ежедневно</td></tr>
+            <tr><td>1.3.4.</td><td>Уборка известкового налета, подтеков и следов ржавчины с применением специальных средств;</td><td>ежедневно</td></tr>
+            <tr><td>1.3.5.</td><td>Санитарно-дезинфекционная обработка сантехники (унитазов, раковин), подводку к сантехники с применением специальных средств;</td><td>ежедневно</td></tr>
+            <tr><td>1.3.6.</td><td>Заправка диспенсеров (жидкое мыло, туалетная бумага, бумажные полотенца)</td><td>ежедневно</td></tr>
+        </table>
+    </div>
+
+
+
+    <div id="examples">
+        <p>Наши клиенты</p>
+        <table border="0" cellspacing="40pt">
+            <tr>
+                <td>
+                    <img src="<?php echo $this->static_path ?>/img/kp/examples_contract/1.png" />
+                    <p class="headline">
+                        Кафе-бутик HEDIARD
+                    </p>
+                    <p class="description">
+                        Ежедневная уборка элитного кафе-бутика в центре Москвы, помещение с большой проходимостью. На объекте ежемесячно проводится ночная генеральная уборка и химчистка.
+                    </p>
+                </td>
+                <td>
+                    <img src="<?php echo $this->static_path ?>/img/kp/examples_contract/2.png" />
+                    <p class="headline">Ежедневная уборка Фитнес центра</p>
+                    <p class="description">
+                        Проводится круглосуточная уборка фитнес центра, поддержка в чистоте напольных покрытий, зоны бассейна, банного комплекса, с соблюдением норм СанПиН.
+                    </p>
+                </td>
+                <td>
+                    <img src="<?php echo $this->static_path ?>/img/kp/examples_contract/3.png" />
+                    <p class="headline">Ежедневная уборка офиса, студийных помещений</p>
+                    <p class="description">
+                        Производится механическая мойка наливного пола роторной машиной, чистка студий звукозаписи, комплексная ежедневная уборка.
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <img src="<?php echo $this->static_path ?>/img/kp/examples_contract/4.png" />
+                    <p class="headline">
+                        Ежедневная уборка головного офиса
+                    </p>
+                    <p class="description">
+                        Соответствие работ высокому качеству, предъявляемому японской компанией в вопросе поддержания чистоты.
+                    </p>
+                </td>
+                <td>
+                    <img src="<?php echo $this->static_path ?>/img/kp/examples_contract/5.png" />
+                    <p class="headline">Ежедневная уборка главного здания банка</p>
+                    <p class="description">
+                        Ежедневная уборка производится гражданами РФ, соответствующими требованиям банка. Помимо услуг уборки, объект обеспечивается расходными материалами и соответствующими диспенсерами.
+                    </p>
+                </td>
+                <td>
+                    <img src="<?php echo $this->static_path ?>/img/kp/examples_contract/6.png" />
+                    <p class="headline">Ежедневная утренняя уборка офиса.</p>
+                    <p class="description">Ежедневная уборка офиса компании Qiwi в центре Москвы.</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <img src="<?php echo $this->static_path ?>/img/kp/examples_contract/7.png" />
+                    <p class="description">
+                        Ежедневная уборка здания с особым пропускным режимом. Также на объекты компании поставляются расходные материалы.
+                    </p>
+                </td>
+                <td>
+                    <img src="<?php echo $this->static_path ?>/img/kp/examples_contract/8.png" />
+                    <p class="headline">Ежедневная уборка сети языковых школ.</p>
+                    <p class="description">
+                        Уборка производится в разные часовые диапазоны в зависимости от пожеланий каждой из школ.
+                    </p>
+                </td>
+                <td>
+                    <img src="<?php echo $this->static_path ?>/img/kp/examples_contract/9.png" />
+                    <p class="headline">Ежедневная уборка офиса компании.</p>
+                    <p class="description">
+                        Осуществляется ежедневная комплексная уборка офисных помещений компании Фармстандарт-Медтехника в г.Москве
+                    </p>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div id="company_info">
+        <p><b>Информация о компании:</b></p>
+        <p>Компания Эврика Клининг была основана в 2011 году и с тех пор развивается в направлении предоставления качественных профессиональных услуг клининга и тех.обслуживания. Среди основных услуг компании: ежедневная уборка помещений и территорий, уборка после строительства/ремонта, услуги химчистки, услуги аутстаффинга, услуги тех. эксплуатации. Характерной чертой компании является приверженность максимальной отдаче в работе, а также соответствию запросам наших Клиентов. Ввиду относительно небольших размеров компании, Эврика Клининг имеет возможность щепетильно и трепетно относиться к каждому из наших Клиентов.</p>
+        <p><img src="<?php echo $this->static_path ?>/img/kp/image012.jpg" /></p>
+        <p><b>Несколько интересных фактов о нашей компании:</b></p>
+        <ul>
+            <li>Средняя продолжительность рабочего цикла уборщиков более года, что является одним из самых высоких показателей на рынке клининга;</li>
+            <li>Наша самая первая сотрудница-уборщица Светлана до сих пор работает с нами;</li>
+            <li>Наш первый Клиент, корейский автопроизводитель, до сих пор работает с нами;</li>
+            <li>Высокий уровень нашего сервиса подтверждается <a href="https://yadi.sk/d/PnY0jYUu32iiJ2">письменными благодарностями и отзывами Клиентов</a>, а также <a href="https://www.youtube.com/watch?v=67L87IoOu30&list=UUtO9G2RAFJdMReoVadTVm5Q">видеоотзывами</a>;</li>
+            <li>По запросу наших Клиентов мы предоставляем опцию контроля за состоянием работ через фирменное мобильное приложение.</li>
+        </ul>
+        <p><b>Почему стоит выбрать именно нас:</b></p>
+        <ul>
+            <li>Мы подсчитали, что в среднем мы экономим 360.000* руб/год для каждого нашего клиента по сравнению с предыдущим исполнителем клининга, будь то штатные сотрудники или другая клиниговая компания, за счет оптимизации процессов и других эффективных методов;
+            <p><span class='small'>*экономия зависит от общей суммы контракта</span></p></li>
+            <li>Каждый пятый наш клиент на тендере выбирает нашего конкурента, предложившего цену ниже, но спустя 1-3 месяца звонят и обращаются к нам, осознав очевидное правило «скупой платит дважды». Мы предлагаем лучшее соотношение качества и цены на рынке.</li>
+            <li>30% наших клиентов вначале заказывают у нас разовые работы или временную замену сотрудницы на время отпуска или больничного и, видя высокое качество наших работ, подписывают с нами долгосрочные контракты – это говорит о высоком доверии и ориентированности на результат.</li>
+        </ul>
+        <div id="whatelse">
+            <p><b>Чем еще мы можем вам пригодиться:</b></p>
+            <table border="0">
+                <tr>
+                    <td>
+                        <p>*Ежедневная уборка</p>
+                        <p>*Генеральная уборка, мойка остекления</p>
+                    </td>
+                    <td>
+                        <p>*Техническая эксплуатация</p>
+                        <p>*Химчистка ковролина, мягкой мебели</p>
+                    </td>
+                    <td>
+                        <p>*Уборка после ремонта</p>
+                        <p>*Аутстаффинг, предоставление кофе-леди, горничных, грузчиков</p>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <p><b>Заказывайте у нас! Мы оправдаем ваше доверие и будем для вас надежным партнером на долгие года!</b></p>
+    </div>
+</div>
+</body>
+</html>

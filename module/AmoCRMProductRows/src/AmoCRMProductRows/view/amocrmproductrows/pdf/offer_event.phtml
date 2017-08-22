@@ -1,0 +1,349 @@
+<html>
+<head>
+    <style>
+        img#main_img{
+            margin: -1.2cm -1.2cm;
+        }
+
+        img#logo_img{
+            position: absolute;
+            left: 15cm;
+            top: 9cm;
+        }
+
+        img#logo_name{
+            position: absolute;
+            left: 15.1cm;
+            top: 11.8cm;
+        }
+
+        #main_wrapper{
+            left: 2cm;
+            right: 0.5cm;
+            margin-top: 1cm;
+        }
+
+
+        h1{
+            font-size: 17pt;
+        }
+        div#upper p{
+            font-size: 12pt;
+        }
+
+        #products{
+            margin-top: 4cm;
+        }
+        #products table{
+            width: 16cm;
+        }
+        #products table td p{
+            margin: 0;
+            line-height: 1em;
+        }
+
+        #products table td p:nth-child(2){
+            color: #636363;
+            font-size: 10pt;
+        }
+
+        #products table td p:nth-child(3){
+            margin-top: .3cm;
+        }
+
+        #products table tbody tr:last-child td{
+            border-top: 1px solid #000;
+        }
+
+        #products table tbody tr td:last-child{
+            vertical-align: top;
+            text-align: right;
+        }
+
+        #products table tbody tr:last-child td{
+            text-align: right;
+        }
+
+
+
+        #comments p{
+            text-align: justify;
+            line-height: 1em;
+        }
+        #comments p.special{
+            margin: 0 10pt;
+        }
+        #comments p.special{
+            page-break-after: avoid;
+        }
+
+
+        #job_list{
+            margin-top: 1cm;
+            font-size: 11pt;
+        }
+        #job_list p{
+            margin: 0;
+            text-align: center;
+        }
+        #job_list table tr th:first-child{
+            text-align: left;
+        }
+        #job_list table tr:first-child th:first-child{
+            text-align: center;
+        }
+        #whatelse{
+            margin-top: 3cm;
+            page-break-inside: avoid;
+        }
+        #whatelse p{
+            margin: 0;
+            font-size: 10pt;
+        }
+
+        #examples{
+            margin-top: 1cm;
+            page-break-inside: avoid;
+        }
+        #examples p:first-child{
+            font-size: 17pt;
+        }
+        #examples table{
+            margin: -32pt -30pt;
+        }
+        #examples table td p{
+            margin: 8pt 0;
+            line-height: .8em;
+        }
+        #examples table td p.headline{
+            font-size: 12pt;
+        }
+        #examples table td p.description{
+            font-size: 9pt;
+        }
+
+        #team{
+            margin-top: 1cm;
+            page-break-inside: avoid;
+        }
+        #team p:first-child{
+            font-size: 17pt;
+        }
+        #team table{
+            margin: -32pt -30pt;
+        }
+        #team table td p{
+            margin: 8pt 0;
+            line-height: .8em;
+        }
+        #team table td p.headline{
+            font-size: 12pt;
+        }
+        #team table td p.description{
+            color: #636363;
+            font-size: 9pt;
+        }
+
+        #contacts{
+            margin-top: 2cm;
+        }
+
+        #contacts table{
+
+        }
+
+        #contacts table h4{
+            font-size: 12pt;
+            font-weight: normal;
+            margin: 0;
+        }
+
+        #contacts table p{
+            margin: 0;
+            line-height: 1em;
+            font-size: 9pt;
+        }
+
+        #contacts table td{
+            vertical-align: top;
+        }
+
+        #contacts table tr:first-child td:first-child{
+            width: 7cm;
+        }
+
+        #contacts table tr:first-child td:nth-child(2){
+            width: 7.5cm;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<img src="<?php echo $this->static_path ?>/img/kp/event_main.png" id="main_img" />
+<img src="<?php echo $this->static_path ?>/img/kp/image004.png" id="logo_img" />
+<img src="<?php echo $this->static_path ?>/img/kp/logo_name.png" id="logo_name" />
+<div id="main_wrapper">
+    <div id="upper">
+        <p>Коммерческое предложение от <?= date('d.m.Y') . ' г.' ?></p>
+        <h1><?php echo $this->lead->name ?></h1>
+    </div>
+
+    <div id="products">
+        <table cellspacing="0">
+            <tbody>
+            <!-- START: вариативная часть -->
+            <?php
+                $i = 0;
+                foreach ($this->products as $product):
+                    $i++;
+                    ?>
+                <tr>
+                    <td>
+                        <p><?= $product->name ?></p>
+                        <p><?= $this->lead->kp_comment ?></p>
+                    </td>
+                    <td><?= number_format($product->price * $product->quantity, 0, '.', ' ') ?> руб.</td>
+                </tr>
+            <?php endforeach; ?>
+            <!-- END: вариативная часть -->
+            <tr>
+                <td colspan="2">
+                    Стоимость:
+                    <?= number_format($this->sum, 0, '.', ' '); ?> руб.
+                    <?php
+                    switch ($this->lead->seller['id']){
+                        case '4473656':
+                            echo ' с НДС';
+                            break;
+                        default:
+                            echo    ' без НДС';
+                            break;
+                    }
+                    ?>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div id="whatelse">
+        <p>
+            <b>
+                В стоимость услуг включены: инвентарь, моющие средства, используемые при уборке, мусорные мешки, транспортные и накладные расходы, амортизация оборудования.
+            </b>
+        </p>
+        <p>
+            Текущие цены действуют исключительно в том количестве и объеме, обозначенном в настоящем коммерческом предложении.
+        </p>
+    </div>
+
+    <div id="examples">
+        <p>Примеры наших работ на мероприятиях</p>
+        <table border="0" cellspacing="40pt">
+            <tr>
+                <td>
+                    <img src="<?php echo $this->static_path ?>/img/kp/examples_event/1.png" />
+                    <p class="headline">Уборка в Большом Театре</p>
+                    <p class="description">
+                        Осенью 2016 года Эврика Клининг осуществляла уборку в главном здании Большого Театра во время и после детского мероприятия «Путешествие в Большой Театр».
+                    </p>
+                </td>
+                <td>
+                    <img style="margin-top: -11px" src="<?php echo $this->static_path ?>/img/kp/examples_event/2.png" />
+                    <p class="headline">Уборка в Парке Горького на спортивном фестивале</p>
+                    <p class="description">
+                        Осенью 2016 года Эврика Клининг осуществляла уборку в главном здании Большого Театра во время и после детского мероприятия «Путешествие в Большой Театр».
+                    </p>
+                </td>
+                <td>
+                    <img style="margin-top: -22px" src="<?php echo $this->static_path ?>/img/kp/examples_event/3.png" />
+                    <p class="headline">Уборка на Международном Нефтяном Конгрессе</p>
+                    <p class="description">
+                        В июне 2014 года наша компания проводила уборку стендов компаний Qatar Petrolium и Sonangol на Международном Нефтяном Конгрессе в Крокус Экспо.
+                    </p>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div id="team">
+        <p>Наша команда</p>
+        <table border="0" cellspacing="40pt">
+            <tr>
+                <td>
+                    <img src="<?php echo $this->static_path ?>/img/kp/team_event/1.png" />
+                    <p class="headline">Владислав Ларионов</p>
+                    <p class="description">
+                        Руководитель отдела продаж
+                    </p>
+                </td>
+                <td>
+                    <img style="margin-top: -11px" src="<?php echo $this->static_path ?>/img/kp/team_event/2.png" />
+                    <p class="headline">Алена Волошко</p>
+                    <p class="description">
+                        Руководитель отдела развития
+                    </p>
+                </td>
+                <td>
+                    <img style="" src="<?php echo $this->static_path ?>/img/kp/team_event/3.png" />
+                    <p class="headline">Наталья Бодарева</p>
+                    <p class="description">
+                        Руководитель направления специализированных и разовых услуг
+                    </p>
+                </td>
+                <td>
+                    <img style="margin-top: -11px" src="<?php echo $this->static_path ?>/img/kp/team_event/4.png" />
+                    <p class="headline">Ольга Куваева</p>
+                    <p class="description">
+                        Руководитель отдела контроля качества
+                    </p>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div id="contacts">
+        <table>
+            <tr>
+                <td>
+                    <h4>Контактная информация</h4>
+                    <p>125040, Москва, ул. Расковой, 10, стр. 4</p>
+                    <p>Телефон: 8 (499) 505-50-12</p>
+                    <p>Почта: zakaz@e-vrika.ru</p>
+                </td>
+                <td>
+                    <p><?= $this->lead->seller['name'] ?></p>
+                    <?php switch($this->lead->seller['id']):
+                        case '4473656':
+                            ?>
+                            <p>Огрн 1157746434625</p>
+                            <p>ИНН 7714339627</p>
+                            <p>КПП 771401001</p>
+                            <p>ОКПО 45118615</p>
+                            <?php
+                            break;
+                        case '4473658':
+                            ?>
+                            <p>Огрн 5137746064286</p>
+                            <p>ИНН  7714920398</p>
+                            <p>КПП  771401001</p>
+                            <p>ОКПО 20534426</p>
+                            <?php
+                            break;
+                        case '4473660':
+                            ?>
+                            <p>Огрнип 312402704700030</p>
+                            <p>ИНН  402714285405</p>
+                        <?php
+                            endswitch;
+                        ?>
+                </td>
+                <td>
+                    <img src="<?php echo $this->static_path ?>/img/kp/image012.png" />
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+</body>
+</html>
